@@ -1,4 +1,13 @@
 package com.example.data
 
-class CoinDetailRepositoryImpl {
+import com.example.data.data_source.CoinDetailDataSource
+import com.example.data.entity.detail.toCoinDetail
+import com.example.domain.model.CoinDetailModel
+import com.example.domain.repository.CoinDetailRepository
+import javax.inject.Inject
+
+class CoinDetailRepositoryImpl @Inject constructor(private val api: CoinDetailDataSource):CoinDetailRepository {
+    override suspend fun getCoinDetail(id: String):List<CoinDetailModel> {
+        return api.getCoinDetail(id).map{it.toCoinDetail()}
+    }
 }

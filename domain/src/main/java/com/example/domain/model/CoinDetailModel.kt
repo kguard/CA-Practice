@@ -1,4 +1,4 @@
-package com.example.domain
+package com.example.domain.model
 
 data class CoinDetailModel (
     val coinId: String,
@@ -9,5 +9,4 @@ data class CoinDetailModel (
     val isActive: Boolean,
     val tags: List<String>,
     val team: List<TeamModel>
-
     )

@@ -1,4 +1,7 @@
 package com.example.data.entity.detail
 
-class Team {
-}
+data class Team (
+    val id: String,
+    val name: String,
+    val position: String
+        )

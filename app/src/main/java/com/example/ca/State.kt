@@ -1,4 +1,5 @@
 package com.example.ca
 
-class State {
+enum class State {
+    SUCCESS, ERROR, LOADING
 }
