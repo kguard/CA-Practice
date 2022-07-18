@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/git/CA/app/src/main/res/layout/activity_main.xml" value="0.3619791666666667" />
         <entry key="..\:/git/CA/app/src/main/res/layout/dialog.xml" value="0.3609375" />
+        <entry key="..\:/git/CA/app/src/main/res/layout/fragment_blank.xml" value="0.3619791666666667" />
+        <entry key="..\:/git/CA/app/src/main/res/layout/fragment_detail.xml" value="0.3697916666666667" />
+        <entry key="..\:/git/CA/app/src/main/res/layout/fragment_l.xml" value="0.3619791666666667" />
+        <entry key="..\:/git/CA/app/src/main/res/layout/fragment_list.xml" value="0.3619791666666667" />
         <entry key="..\:/git/CA/app/src/main/res/layout/itemholder.xml" value="0.33" />
       </map>
     </option>

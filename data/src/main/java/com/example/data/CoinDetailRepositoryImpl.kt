@@ -7,7 +7,7 @@ import com.example.domain.repository.CoinDetailRepository
 import javax.inject.Inject
 
 class CoinDetailRepositoryImpl @Inject constructor(private val api: CoinDetailDataSource):CoinDetailRepository {
-    override suspend fun getCoinDetail(id: String):List<CoinDetailModel> {
-        return api.getCoinDetail(id).map{it.toCoinDetail()}
+    override suspend fun getCoinDetail(id: String):CoinDetailModel {
+        return api.getCoinDetail(id).toCoinDetail()
     }
 }

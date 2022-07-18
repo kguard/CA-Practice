@@ -1,5 +1,6 @@
-package com.example.ca
+package com.example.ca.usecase
 
+import com.example.ca.Resource
 import com.example.domain.model.CoinModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class CoinUseCase @Inject constructor(private val repository: CoinRepository) {
             emit(Resource.Success<List<CoinModel>>(coins))
         }
         catch (e:HttpException){
-            emit(Resource.Error<List<CoinModel>>(e.localizedMessage?:"모르는 오류 에휴"))
+            emit(Resource.Error<List<CoinModel>>(e.localizedMessage ?: "모르는 오류 에휴"))
         }
         catch (e: IOException){
             emit(Resource.Error<List<CoinModel>>("연결실패 에휴"))

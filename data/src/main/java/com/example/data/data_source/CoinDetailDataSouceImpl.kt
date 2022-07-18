@@ -6,7 +6,7 @@ import retrofit2.create
 import javax.inject.Inject
 
 class CoinDetailDataSouceImpl @Inject constructor(private val retrofit: Retrofit):CoinDetailDataSource {
-    override suspend fun getCoinDetail(id: String): List<CoinDetailEntity> {
+    override suspend fun getCoinDetail(id: String): CoinDetailEntity {
         return retrofit.create(CoinDetailDataSource::class.java).getCoinDetail(id)
     }
 

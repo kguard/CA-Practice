@@ -1,8 +1,8 @@
 package com.example.ca.di
 
-import com.example.ca.CoinDetailUseCase
+import com.example.ca.usecase.CoinDetailUseCase
 import com.example.domain.repository.CoinRepository
-import com.example.ca.CoinUseCase
+import com.example.ca.usecase.CoinUseCase
 import com.example.domain.repository.CoinDetailRepository
 import dagger.Module
 import dagger.Provides
@@ -20,7 +20,7 @@ object UseCaseModule {
     }
     @Provides
     @Singleton
-    fun provideCoinDetailUseCase(repository: CoinDetailRepository): CoinDetailUseCase{
+    fun provideCoinDetailUseCase(repository: CoinDetailRepository): CoinDetailUseCase {
         return CoinDetailUseCase(repository)
     }
 

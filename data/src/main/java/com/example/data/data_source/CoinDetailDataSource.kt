@@ -10,5 +10,5 @@ interface CoinDetailDataSource {
     suspend fun getCoinDetail(
         @Path("coin_id")
         id: String
-    ):List<CoinDetailEntity>
+    ):CoinDetailEntity
 }

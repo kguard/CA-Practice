@@ -1,5 +1,7 @@
 package com.example.ca
 
+import android.graphics.Color
+import android.graphics.Color.RED
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +12,7 @@ import com.example.domain.model.CoinModel
 
 class Adapter(
     val items: List<CoinModel>,
-    val onClick: (String,Int)->Unit
+    val onClick: (String)->Unit
     ): RecyclerView.Adapter<Adapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflatedView=
@@ -20,14 +22,14 @@ class Adapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnClickListener{
-            onClick(items[position].id,items[position].rank)
+            onClick(items[position].id)
         }
         holder.setId(items[position].id)
         holder.setName(items[position].name)
-        holder.setSymbol(items[position].symbol)
+        holder.setSymbol("("+items[position].symbol+")")
         holder.setRank(items[position].rank.toString())
-        holder.setIsNew(items[position].is_new.toString())
-        holder.setIsActive(items[position].is_active.toString())
+        holder.setIsNew(items[position].is_new)
+        holder.setIsActive(items[position].is_active)
     }
 
     override fun getItemCount(): Int {
@@ -56,19 +58,27 @@ class Adapter(
         {
             rank.text=a
         }
-        fun setIsNew(a:String)
+        fun setIsNew(a:Boolean)
         {
-            is_new.text=a
-        }
-        fun setIsActive(a:String)
-        {
-            is_active.text=a
-        }
-        init {
-            view.setOnClickListener{
-                Toast.makeText(view.context, "되나?",Toast.LENGTH_SHORT).show()
+            if(a==false)
+            {is_new.visibility=View.INVISIBLE}
+            else
+            {
+                is_new.visibility=View.VISIBLE
             }
         }
+        fun setIsActive(a:Boolean)
+        {
+            if(a==true)
+            {is_active.text="active"}
+            else
+            {
+                is_active.setTextColor(Color.RED)
+                is_active.text="inactive"
+            }
+
+        }
+
 
     }
 

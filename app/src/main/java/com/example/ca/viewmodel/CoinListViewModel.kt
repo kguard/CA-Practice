@@ -1,14 +1,17 @@
-package com.example.ca
+package com.example.ca.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ca.Resource
+import com.example.ca.State
+import com.example.ca.usecase.CoinUseCase
 import com.example.domain.model.CoinModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
-class CoinViewModel @Inject constructor(private val useCase: CoinUseCase):ViewModel() {
+class CoinListViewModel @Inject constructor(private val useCase: CoinUseCase):ViewModel() {
 
     data class CoinListState(
         val state: State = State.LOADING,
