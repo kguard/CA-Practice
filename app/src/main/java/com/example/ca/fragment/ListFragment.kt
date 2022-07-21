@@ -59,8 +59,7 @@ class ListFragment : Fragment() {
                     State.LOADING->{}
                     State.SUCCESS->{
                         Adapter(it.data)
-                        { id ->
-                            setFragmentResult("id", bundleOf("bundleKey" to id))
+                        { id -> setFragmentResult("id", bundleOf("bundleKey" to id))
                             parentFragmentManager.beginTransaction().replace(R.id.frame,DetailFragment()).addToBackStack(null).commit()
                             // id를 받아와서 다음생성 프래그먼트로 넘겨주기
                             // Toast.makeText

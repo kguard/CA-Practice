@@ -49,9 +49,11 @@ class DetailFragment: Fragment() {
         // Inflate the layout for this fragment
         val inflate = inflater.inflate(R.layout.fragment_detail, container, false)
         val viewModel: CoinDetailViewModel by viewModels()
-        setFragmentResultListener("id") { requestKey, bundle ->
-            val result = bundle.getString("bundleKey")
-        viewModel.getCoinDetail(result.toString())}
+        
+        setFragmentResultListener("id")
+        { requestKey, bundle -> val result = bundle.getString("bundleKey")
+            viewModel.getCoinDetail(result.toString()) }
+
         var id=inflate.findViewById<TextView>(R.id.detailid)
         var name=inflate.findViewById<TextView>(R.id.detailname)
         var descrption=inflate.findViewById<TextView>(R.id.detaildescription)
@@ -60,6 +62,7 @@ class DetailFragment: Fragment() {
         var isActive=inflate.findViewById<TextView>(R.id.detailactive)
         var tag=inflate.findViewById<TextView>(R.id.detailtag)
         var team=inflate.findViewById<TextView>(R.id.detailteam)
+
         lifecycleScope.launchWhenStarted {
             viewModel.coinDetailState.collectLatest {
                 when(it.state){
