@@ -24,13 +24,13 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(R.id.frame, ListFragment())
             .commit()
-        supportFragmentManager.commit {
+        /*supportFragmentManager.commit {
             add(DetailFragment(),null)
             add(ListFragment(),null)
             show(ListFragment())
             hide(DetailFragment())
             replace(R.id.frame,ListFragment())
-        }
+        }*/
 
     }
 

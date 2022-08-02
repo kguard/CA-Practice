@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ca.Adapter
 import com.example.ca.R
 import com.example.ca.State
+import com.example.ca.databinding.FragmentListBinding
 import com.example.ca.viewmodel.CoinListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -49,9 +50,8 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val inflate = inflater.inflate(R.layout.fragment_list, container, false)
+        val binding=FragmentListBinding.inflate(inflater,container,false)
         val viewModel: CoinListViewModel by viewModels()
-        var recyclerView=inflate.findViewById<RecyclerView>(R.id.recyclerview)
 
         lifecycleScope.launchWhenStarted {
             viewModel.CoinState.collectLatest {
@@ -65,13 +65,13 @@ class ListFragment : Fragment() {
                             // Toast.makeText
                         }
                             .also {
-                                    adapter -> recyclerView.adapter=adapter
+                                    adapter -> binding.recyclerview.adapter=adapter
                             }
-                        recyclerView.addItemDecoration(
+                        binding.recyclerview.addItemDecoration(
                             DividerItemDecoration(context,
                                 DividerItemDecoration.VERTICAL)
                         )
-                        recyclerView.layoutManager= LinearLayoutManager(context)
+                        binding.recyclerview.layoutManager= LinearLayoutManager(context)
                     }
                     State.ERROR->{
                         Toast.makeText(context,it.error, Toast.LENGTH_SHORT).show()
@@ -79,7 +79,7 @@ class ListFragment : Fragment() {
                 }
             }
         }
-        return inflate
+        return binding.root
     }
 
     companion object {

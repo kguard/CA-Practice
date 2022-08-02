@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.ca.R
 import com.example.ca.State
+import com.example.ca.databinding.FragmentDetailBinding
 import com.example.ca.viewmodel.CoinDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -47,45 +48,35 @@ class DetailFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val inflate = inflater.inflate(R.layout.fragment_detail, container, false)
+        val binding=FragmentDetailBinding.inflate(inflater,container,false)
         val viewModel: CoinDetailViewModel by viewModels()
-        
         setFragmentResultListener("id")
         { requestKey, bundle -> val result = bundle.getString("bundleKey")
             viewModel.getCoinDetail(result.toString()) }
-
-        var id=inflate.findViewById<TextView>(R.id.detailid)
-        var name=inflate.findViewById<TextView>(R.id.detailname)
-        var descrption=inflate.findViewById<TextView>(R.id.detaildescription)
-        var symbol=inflate.findViewById<TextView>(R.id.detailsymbol)
-        var rank=inflate.findViewById<TextView>(R.id.detailrank)
-        var isActive=inflate.findViewById<TextView>(R.id.detailactive)
-        var tag=inflate.findViewById<TextView>(R.id.detailtag)
-        var team=inflate.findViewById<TextView>(R.id.detailteam)
 
         lifecycleScope.launchWhenStarted {
             viewModel.coinDetailState.collectLatest {
                 when(it.state){
                     State.LOADING->{}
                     State.SUCCESS->{
-                        id.text= it.detail!!.coinId
-                        name.text=it.detail.name
-                        descrption.text=it.detail.description
-                        symbol.text="("+it.detail.symbol+")"
-                        rank.text= it.detail.rank.toString()
+                        binding.detailid.text= it.detail!!.coinId
+                        binding.detailname.text=it.detail.name
+                        binding.detaildescription.text=it.detail.description
+                        binding.detailsymbol.text="("+it.detail.symbol+")"
+                        binding.detailrank.text= it.detail.rank.toString()
                         if(it.detail.isActive==true)
                         {
-                            isActive.text="active"
-                            isActive.setTextColor(Color.GREEN)
+                            binding.detailactive.text="active"
+                            binding.detailactive.setTextColor(Color.GREEN)
                         }
                         else
                         {
-                            isActive.text="inactive"
-                            isActive.setTextColor(Color.RED)
+                            binding.detailactive.text="inactive"
+                            binding.detailactive.setTextColor(Color.RED)
                         }
-                        tag.text= it.detail.tags.toString()
+                        binding.detailtag.text= it.detail.tags.toString()
                         var listname=it.detail.team.map{"\n"+it.name+" - "+it.position}.toString()
-                        team.text=listname
+                        binding.detailteam.text=listname
 
 
                     }
@@ -97,7 +88,7 @@ class DetailFragment: Fragment() {
         }
 
 
-        return inflate
+        return binding.root
     }
 
     companion object {
